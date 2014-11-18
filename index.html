@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>D3-Resume</title>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="d3resume.js"></script>
+    <script src="jquery-1.11.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var height = $(window).height();
+            var width = $(window).width();
+            var svgHeight = height * 0.8;
+
+            if (width < 900) width = 900;
+
+            if (svgHeight < 600)
+            {
+                svgHeight = 600;
+            }
+            else
+            {
+                $('#experience')
+                        .css('padding-bottom', function(e){
+                            return height - svgHeight;
+                        });
+            }
+
+            var resume = new d3Resume({
+                width: width,
+                height: svgHeight,
+                wrapperSelector: "#experience",
+                dataUrl: 'http://localhost:63342/d3-resume/data.json'
+            });
+        });
+    </script>
+</head>
+<body>
+<section id="experience" style="background-color: cornflowerblue">
+</section>
+</body>
+</html>
